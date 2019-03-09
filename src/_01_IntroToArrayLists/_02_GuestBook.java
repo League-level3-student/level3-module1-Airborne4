@@ -1,7 +1,42 @@
 package _01_IntroToArrayLists;
 
-public class _02_GuestBook {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+
+public class _02_GuestBook implements ActionListener {
 	// Create a GUI with two buttons. One button reads "Add Name" and the other
+	JFrame j = new JFrame();
+	JPanel jp = new JPanel();
+	JButton jb1 = new JButton("Add Name");
+	JButton jb2 = new JButton("View Names");
+	JTextArea ja = new JTextArea(1, 20);
+	ArrayList<String> list = new ArrayList<String>();
+
+	public _02_GuestBook() {
+		j.setVisible(true);
+		j.add(jp);
+		jp.add(jb1);
+		jp.add(jb2);
+		jp.add(ja);
+		j.setDefaultCloseOperation(j.EXIT_ON_CLOSE);
+		j.pack();
+		jb1.addActionListener(this);
+	}
+
+	public static void main(String[] args) {
+		_02_GuestBook g = new _02_GuestBook();
+	}
+
+	void viewNames() {
+
+	}
 	// button reads "View Names".
 	// When the add name button is clicked, display an input dialog that asks the
 	// user to enter a name. Add
@@ -12,5 +47,21 @@ public class _02_GuestBook {
 	// Guest #2: Sandy Summers
 	// Guest #3: Greg Ganders
 	// Guest #4: Donny Doners
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == jb1) {
+			String nombre = JOptionPane.showInputDialog("Enter name: ");
+			list.add(nombre);
+			System.out.println(list);
+		}
+		if (e.getSource() == jb2) {
+			for (int i = 0; i < list.size(); i++) {
+				String names = list.get(i);
+				JOptionPane.showMessageDialog(null, names);
+
+			}
+		}
+	}
 
 }
