@@ -16,7 +16,7 @@ public class _02_GuestBook implements ActionListener {
 	JPanel jp = new JPanel();
 	JButton jb1 = new JButton("Add Name");
 	JButton jb2 = new JButton("View Names");
-	JTextArea ja = new JTextArea(1, 20);
+	JTextArea ja = new JTextArea(10, 20);
 	ArrayList<String> list = new ArrayList<String>();
 
 	public _02_GuestBook() {
@@ -26,8 +26,9 @@ public class _02_GuestBook implements ActionListener {
 		jp.add(jb2);
 		jp.add(ja);
 		j.setDefaultCloseOperation(j.EXIT_ON_CLOSE);
-		j.pack();
 		jb1.addActionListener(this);
+		jb2.addActionListener(this);
+		j.pack();
 	}
 
 	public static void main(String[] args) {
@@ -56,11 +57,14 @@ public class _02_GuestBook implements ActionListener {
 			System.out.println(list);
 		}
 		if (e.getSource() == jb2) {
+			String allGuests = "";
 			for (int i = 0; i < list.size(); i++) {
-				String names = list.get(i);
-				JOptionPane.showMessageDialog(null, names);
+				String s = list.get(i);
+				allGuests = allGuests + "Guest #" + i + " " + s + "\n";
 
+				System.out.println("Guest # " + i + " " + s);
 			}
+			ja.setText(allGuests);
 		}
 	}
 
