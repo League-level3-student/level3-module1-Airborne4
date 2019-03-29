@@ -14,11 +14,16 @@ public class _05_LongChipCompetition {
 	 **/
 	private ArrayList<Beatle> theBeatles = new ArrayList<Beatle>();
 
+	Double longestL = 0.0;
+	String bLong = "";
+
 	public static void main(String[] args) {
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
-		
+		lcc.initializeBeatles();
+		lcc.findTheChip();
+
 	}
-	
+
 	private void initializeBeatles() {
 		Beatle george = new Beatle("George");
 		Beatle john = new Beatle("John");
@@ -28,9 +33,27 @@ public class _05_LongChipCompetition {
 		theBeatles.add(john);
 		theBeatles.add(paul);
 		theBeatles.add(ringo);
-	}
 	
-	public ArrayList<Beatle> getTheBand(){
+	}
+
+	private void findTheChip() {
+		for (int i = 0; i < theBeatles.size(); i++) {
+			Beatle c = theBeatles.get(i);
+			ArrayList<Chip> ch = c.getChips();
+			for (int j = 0; j < ch.size(); j++) {
+				Double length = ch.get(j).getLength();
+				if (length > longestL) {
+					longestL = length;
+					bLong = c.getName();
+				}
+			
+			
+			}
+		}
+		System.out.println(bLong + " had the longest chip with a size of " + longestL + " feet");
+	}
+
+	public ArrayList<Beatle> getTheBand() {
 		return theBeatles;
 	}
 }
