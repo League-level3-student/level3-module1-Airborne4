@@ -36,13 +36,21 @@ public class _02_TextUndoRedo implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		char eu = e.getKeyChar();
-		capture += "" + eu;
-		
+
 		System.out.print(capture);
 		if (e.getKeyCode() == 8) {
-			deleteChar.push(capture.charAt(capture.length()-1));
-			System.out.println("back");
-			capture = capture.substring(0, capture.length()-1);
+			deleteChar.push(capture.charAt(capture.length() - 1));
+			capture = capture.substring(0, capture.length() - 1);
+		}
+
+		else if (e.getKeyCode() == 92) {
+			capture += "" + deleteChar.pop();
+			if (deleteChar.isEmpty()) {
+				
+			}
+
+		} else {
+			capture += "" + eu;
 		}
 		jl.setText(capture);
 	}
