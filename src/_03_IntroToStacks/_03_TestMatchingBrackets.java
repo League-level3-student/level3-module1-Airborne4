@@ -8,6 +8,7 @@ import java.util.Stack;
 import org.junit.Test;
 
 public class _03_TestMatchingBrackets {
+	Stack<Character> charStack = new Stack<Character>();
 
 	@Test
 	public void testMatchingBrackets() {
@@ -19,10 +20,23 @@ public class _03_TestMatchingBrackets {
 
 	}
 
-	// USE A STACK TO COMPLETE THE METHOD FOR CHECKING IF EVERY OPENING BRACKET HAS A MATCHING CLOSING BRACKET
+	// USE A STACK TO COMPLETE THE METHOD FOR CHECKING IF EVERY OPENING BRACKET HAS
+	// A MATCHING CLOSING BRACKET
 	private boolean doBracketsMatch(String b) {
-		
-		return false;
+		charStack.clear();
+		for (int i = 0; i < b.length(); i++) {
+			if (b.charAt(i) == '{') {
+				charStack.push('{');
+			} else if (b.charAt(i) == '}') {
+				if (charStack.isEmpty()) {
+					return false;
+				} else {
+					charStack.pop();
+				}
+			}
+
+		}
+		return charStack.isEmpty();
 	}
 
 }
